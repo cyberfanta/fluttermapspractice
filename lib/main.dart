@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart'; // Suitable for most situations
 import 'package:flutter_map/plugin_api.dart'; // Only import if required functionality is not exposed by 'flutter_map.dart'
+import 'package:fluttermapspractice/staticdata.dart';
 import 'package:latlong2/latlong.dart'; // Recommended for most use-cases
 
 void main() {
@@ -32,14 +33,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // ignore: prefer_typing_uninitialized_variables
-  var size,height,width;
-
   @override
   Widget build(BuildContext context) {
-    size = MediaQuery.of(context).size;
-    height = size.height - 50;
-    width = size.width;
+    StaticData.size = MediaQuery.of(context).size;
+    StaticData.height = StaticData.size.height - 80;
+    StaticData.width = StaticData.size.width;
 
     return Scaffold(
       appBar: AppBar(
@@ -53,8 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
               // height: 50,
               color: Colors.amber[500],
               constraints: BoxConstraints(
-                  minHeight: height, minWidth: width,
-                  maxHeight: height, maxWidth: width),
+                  minHeight: StaticData.height, minWidth: StaticData.width,
+                  maxHeight: StaticData.height, maxWidth: StaticData.width),
               child: FlutterMap(
                 options: MapOptions(
                   center: LatLng(51.509364, -0.128928),
